@@ -1,0 +1,515 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package vista;
+
+import controlador.Controlador_FRM_VentanaPrincipalMigracion;
+import javax.swing.ButtonGroup;
+
+/**
+ *
+ * @author Carlos
+ */
+public class FRM_VentanaPrincipalMigracion extends javax.swing.JFrame {
+
+    Controlador_FRM_VentanaPrincipalMigracion controlador_FRM_VentanaPrincipalMigracion;
+    ButtonGroup botonesPrioridad= new ButtonGroup();
+    private String prioridad;
+    
+    public FRM_VentanaPrincipalMigracion() {
+        super("Principal Migración");
+        initComponents();
+        setLocationRelativeTo(this);
+        controlador_FRM_VentanaPrincipalMigracion= new Controlador_FRM_VentanaPrincipalMigracion(this);
+        agregarRadioBotones();
+        agregarEventos();
+    }
+    
+    public void agregarEventos() {
+        this.btn_Consultar.addActionListener(controlador_FRM_VentanaPrincipalMigracion);
+        this.btn_Registrar.addActionListener(controlador_FRM_VentanaPrincipalMigracion);
+        this.btn_Modificar.addActionListener(controlador_FRM_VentanaPrincipalMigracion);
+        this.btn_Cancelar.addActionListener(controlador_FRM_VentanaPrincipalMigracion);
+        this.btn_Atender.addActionListener(controlador_FRM_VentanaPrincipalMigracion);
+        this.btn_Reporte.addActionListener(controlador_FRM_VentanaPrincipalMigracion);
+        this.btn_MenorAMayor.addActionListener(controlador_FRM_VentanaPrincipalMigracion);
+        this.btn_MayorAMenor.addActionListener(controlador_FRM_VentanaPrincipalMigracion);
+        this.jrb_Normal.addActionListener(controlador_FRM_VentanaPrincipalMigracion);
+        this.jrb_7600.addActionListener(controlador_FRM_VentanaPrincipalMigracion);
+    }
+    public void agregarRadioBotones() {
+        botonesPrioridad.add(jrb_Normal);
+        botonesPrioridad.add(jrb_7600);
+    }
+    public void resetearGUI() {
+        this.jt_Cedula.setText("");
+        this.jt_Cedula.setEnabled(true);
+        this.jt_Nombre.setText("");
+        this.jt_Nombre.setEnabled(false);
+        this.jt_Edad.setText("");
+        this.jt_Edad.setEnabled(false);
+        this.jt_Fecha.setText("");
+        this.jt_Fecha.setEnabled(false);
+        this.jrb_Normal.setEnabled(false);
+        this.jrb_7600.setEnabled(false);
+        this.btn_Consultar.setEnabled(true);
+        this.btn_Registrar.setEnabled(false);
+        this.btn_Modificar.setEnabled(false);
+        this.btn_Cancelar.setEnabled(false);
+    }
+    public void habilitarEdicion() {
+        
+        this.jt_Cedula.setEnabled(false);
+        this.jt_Nombre.setEnabled(true);
+        this.jt_Edad.setEnabled(true);
+        this.jt_Fecha.setEnabled(true);
+        this.jrb_Normal.setEnabled(true);
+        this.jrb_7600.setEnabled(true);
+        this.btn_Consultar.setEnabled(false);
+    }
+    public void habilitarRegistrar() {
+        this.btn_Registrar.setEnabled(true);
+    }
+    public void habilitarModificar() {
+        this.btn_Modificar.setEnabled(true);
+    }
+    public void habilitarCancelar() {
+        this.btn_Cancelar.setEnabled(true);
+    }
+    public String devolverCedula() {
+        return this.jt_Cedula.getText();
+    }
+    public void definirPrioridad(String prioridad) {
+        this.prioridad=prioridad;
+    }
+    public String[] devolverInformacion() {
+        
+        String arreglo[]= new String[5];
+        
+        arreglo[0]=this.jt_Cedula.getText();
+        arreglo[1]=this.jt_Nombre.getText();
+        arreglo[2]=this.jt_Edad.getText();
+        arreglo[3]=this.jt_Fecha.getText();
+        arreglo[4]=this.prioridad;
+        
+        return arreglo;
+    }
+    public void mostrarInformacion(String arreglo[]) {
+        
+        this.jt_Nombre.setText(arreglo[0]);
+        this.jt_Edad.setText(arreglo[1]);
+        this.jt_Fecha.setText(arreglo[2]);
+        if(arreglo[3].equalsIgnoreCase("Normal")) {
+            this.jrb_Normal.setSelected(true);
+        }
+        if(arreglo[3].equalsIgnoreCase("7600")) {
+            this.jrb_Normal.setSelected(true);
+        }
+    }
+    public void mostrarReporte(String lista,String cantidadClientes,String promedioEdad) {
+        
+        this.jta_ListaClientes.setText("");
+        this.jta_ListaClientes.setText(lista);
+        this.jt_CantidadClientes.setText("");
+        this.jt_CantidadClientes.setText(cantidadClientes);
+        this.jt_PromedioEdad.setText("");
+        this.jt_PromedioEdad.setText(promedioEdad);
+    }
+    public void mostrarAtencionCliente(String atendiendo) {
+        
+        this.jta_Atendiendo.setText("");
+        this.jta_Atendiendo.setText(atendiendo);
+    }
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jSeparador1 = new javax.swing.JSeparator();
+        jSeparador2 = new javax.swing.JSeparator();
+        jSeparador3 = new javax.swing.JSeparator();
+        jSeparador4 = new javax.swing.JSeparator();
+        jl_Titulo = new javax.swing.JLabel();
+        jl_Cedula = new javax.swing.JLabel();
+        jl_Nombre = new javax.swing.JLabel();
+        jl_Edad = new javax.swing.JLabel();
+        jl_Fecha = new javax.swing.JLabel();
+        jl_Prioridad = new javax.swing.JLabel();
+        jt_Edad = new javax.swing.JTextField();
+        jt_Nombre = new javax.swing.JTextField();
+        jt_Cedula = new javax.swing.JTextField();
+        jt_Fecha = new javax.swing.JTextField();
+        btn_Registrar = new javax.swing.JButton();
+        btn_Consultar = new javax.swing.JButton();
+        btn_Modificar = new javax.swing.JButton();
+        btn_Cancelar = new javax.swing.JButton();
+        jl_Registro = new javax.swing.JLabel();
+        jl_LlamarCliente = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jta_Atendiendo = new javax.swing.JTextArea();
+        btn_Atender = new javax.swing.JButton();
+        jl_Reportes = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jta_ListaClientes = new javax.swing.JTextArea();
+        jl_Promedio = new javax.swing.JLabel();
+        jl_CantidadClientes = new javax.swing.JLabel();
+        jt_CantidadClientes = new javax.swing.JTextField();
+        jt_PromedioEdad = new javax.swing.JTextField();
+        jl_ListaClientes = new javax.swing.JLabel();
+        btn_Reporte = new javax.swing.JButton();
+        jl_Ordenar = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jta_Ordenar = new javax.swing.JTextArea();
+        btn_MenorAMayor = new javax.swing.JButton();
+        btn_MayorAMenor = new javax.swing.JButton();
+        jrb_Normal = new javax.swing.JRadioButton();
+        jrb_7600 = new javax.swing.JRadioButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1250, 750));
+
+        jSeparador1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jSeparador2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+        jl_Titulo.setFont(new java.awt.Font("Maiandra GD", 1, 24)); // NOI18N
+        jl_Titulo.setText("Departamento de Migración");
+
+        jl_Cedula.setText("Cédula:");
+
+        jl_Nombre.setText("Nombre:");
+
+        jl_Edad.setText("Edad:");
+
+        jl_Fecha.setText("Fecha:");
+
+        jl_Prioridad.setText("Prioridad:");
+
+        jt_Edad.setEnabled(false);
+
+        jt_Nombre.setEnabled(false);
+
+        jt_Fecha.setEnabled(false);
+
+        btn_Registrar.setText("Registar Cita");
+        btn_Registrar.setActionCommand("Registrar");
+        btn_Registrar.setEnabled(false);
+
+        btn_Consultar.setText("Consultar");
+
+        btn_Modificar.setText("Modificar");
+        btn_Modificar.setEnabled(false);
+
+        btn_Cancelar.setText("Cancelar");
+        btn_Cancelar.setEnabled(false);
+
+        jl_Registro.setFont(new java.awt.Font("Maiandra GD", 1, 18)); // NOI18N
+        jl_Registro.setText("Registro");
+
+        jl_LlamarCliente.setFont(new java.awt.Font("Maiandra GD", 1, 18)); // NOI18N
+        jl_LlamarCliente.setText("Llamar Cliente");
+
+        jta_Atendiendo.setColumns(20);
+        jta_Atendiendo.setRows(5);
+        jta_Atendiendo.setEnabled(false);
+        jScrollPane1.setViewportView(jta_Atendiendo);
+
+        btn_Atender.setText("Atender");
+
+        jl_Reportes.setFont(new java.awt.Font("Maiandra GD", 1, 18)); // NOI18N
+        jl_Reportes.setText("Reportes");
+
+        jta_ListaClientes.setColumns(20);
+        jta_ListaClientes.setRows(5);
+        jta_ListaClientes.setEnabled(false);
+        jScrollPane2.setViewportView(jta_ListaClientes);
+
+        jl_Promedio.setText("Promedio de Edad:");
+
+        jl_CantidadClientes.setText("Cantidad de Clientes:");
+
+        jt_CantidadClientes.setEnabled(false);
+
+        jt_PromedioEdad.setEnabled(false);
+
+        jl_ListaClientes.setText("Lista de Clientes:");
+
+        btn_Reporte.setText("Reporte");
+
+        jl_Ordenar.setFont(new java.awt.Font("Maiandra GD", 1, 18)); // NOI18N
+        jl_Ordenar.setText("Ordenar");
+
+        jta_Ordenar.setColumns(20);
+        jta_Ordenar.setRows(5);
+        jta_Ordenar.setEnabled(false);
+        jScrollPane3.setViewportView(jta_Ordenar);
+
+        btn_MenorAMayor.setText("<");
+
+        btn_MayorAMenor.setText(">");
+
+        jrb_Normal.setText("Normal");
+        jrb_Normal.setEnabled(false);
+
+        jrb_7600.setText("7600");
+        jrb_7600.setEnabled(false);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(178, 178, 178)
+                                .addComponent(jl_Registro))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(129, 129, 129)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jl_Nombre)
+                                    .addComponent(jl_Edad)
+                                    .addComponent(jl_Cedula)
+                                    .addComponent(jl_Fecha)
+                                    .addComponent(jl_Prioridad))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jt_Fecha, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                    .addComponent(jt_Edad, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                    .addComponent(jt_Cedula, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                    .addComponent(jt_Nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                                    .addComponent(jrb_Normal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jrb_7600, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(btn_Consultar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_Registrar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_Modificar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_Cancelar)))
+                        .addGap(31, 31, 31)
+                        .addComponent(jSeparador1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(123, 123, 123)
+                                .addComponent(jl_LlamarCliente))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(154, 154, 154)
+                                .addComponent(btn_Atender))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jl_Titulo)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jSeparador3, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(136, 136, 136)
+                                            .addComponent(jl_Reportes))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jl_CantidadClientes)
+                                                .addComponent(jl_Promedio))
+                                            .addGap(18, 18, 18)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jt_PromedioEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jt_CantidadClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(btn_Reporte)))
+                                        .addComponent(jl_ListaClientes)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jSeparador2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(152, 152, 152)
+                                .addComponent(btn_MenorAMayor)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_MayorAMenor))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(150, 150, 150)
+                                .addComponent(jl_Ordenar)))
+                        .addGap(0, 26, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jSeparador4)))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparador2)
+                            .addComponent(jSeparador1)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(60, 60, 60)
+                                .addComponent(jSeparador4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(63, 63, 63)
+                                .addComponent(jl_Registro)
+                                .addGap(68, 68, 68)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jl_Cedula)
+                                    .addComponent(jt_Cedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(16, 16, 16)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jl_Nombre)
+                                    .addComponent(jt_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(20, 20, 20)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jl_Edad)
+                                    .addComponent(jt_Edad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(16, 16, 16)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jl_Fecha)
+                                    .addComponent(jt_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jl_Prioridad)
+                                    .addComponent(jrb_Normal))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jrb_7600)
+                                .addGap(49, 49, 49)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(btn_Modificar)
+                                        .addComponent(btn_Registrar)
+                                        .addComponent(btn_Consultar))
+                                    .addComponent(btn_Cancelar)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addComponent(jl_Titulo)
+                                .addGap(83, 83, 83)
+                                .addComponent(jl_LlamarCliente)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_Atender)
+                                .addGap(39, 39, 39)
+                                .addComponent(jSeparador3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jl_Reportes)
+                                .addGap(30, 30, 30)
+                                .addComponent(jl_ListaClientes)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jl_CantidadClientes)
+                                    .addComponent(jt_CantidadClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(10, 10, 10)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jl_Promedio)
+                                    .addComponent(jt_PromedioEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_Reporte))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(127, 127, 127)
+                                .addComponent(jl_Ordenar)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btn_MenorAMayor)
+                                    .addComponent(btn_MayorAMenor))))
+                        .addGap(0, 11, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(FRM_VentanaPrincipalMigracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(FRM_VentanaPrincipalMigracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(FRM_VentanaPrincipalMigracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(FRM_VentanaPrincipalMigracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new FRM_VentanaPrincipalMigracion().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Atender;
+    private javax.swing.JButton btn_Cancelar;
+    private javax.swing.JButton btn_Consultar;
+    private javax.swing.JButton btn_MayorAMenor;
+    private javax.swing.JButton btn_MenorAMayor;
+    private javax.swing.JButton btn_Modificar;
+    private javax.swing.JButton btn_Registrar;
+    private javax.swing.JButton btn_Reporte;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSeparator jSeparador1;
+    private javax.swing.JSeparator jSeparador2;
+    private javax.swing.JSeparator jSeparador3;
+    private javax.swing.JSeparator jSeparador4;
+    private javax.swing.JLabel jl_CantidadClientes;
+    private javax.swing.JLabel jl_Cedula;
+    private javax.swing.JLabel jl_Edad;
+    private javax.swing.JLabel jl_Fecha;
+    private javax.swing.JLabel jl_ListaClientes;
+    private javax.swing.JLabel jl_LlamarCliente;
+    private javax.swing.JLabel jl_Nombre;
+    private javax.swing.JLabel jl_Ordenar;
+    private javax.swing.JLabel jl_Prioridad;
+    private javax.swing.JLabel jl_Promedio;
+    private javax.swing.JLabel jl_Registro;
+    private javax.swing.JLabel jl_Reportes;
+    private javax.swing.JLabel jl_Titulo;
+    private javax.swing.JRadioButton jrb_7600;
+    private javax.swing.JRadioButton jrb_Normal;
+    private javax.swing.JTextField jt_CantidadClientes;
+    private javax.swing.JTextField jt_Cedula;
+    private javax.swing.JTextField jt_Edad;
+    private javax.swing.JTextField jt_Fecha;
+    private javax.swing.JTextField jt_Nombre;
+    private javax.swing.JTextField jt_PromedioEdad;
+    private javax.swing.JTextArea jta_Atendiendo;
+    private javax.swing.JTextArea jta_ListaClientes;
+    private javax.swing.JTextArea jta_Ordenar;
+    // End of variables declaration//GEN-END:variables
+}
